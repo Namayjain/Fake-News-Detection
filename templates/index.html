@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Fake News📰 Detection System</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </style>
+</head>
+
+<body>
+	<div class="newsButton">
+		<form action="{{ url_for('news') }}" method="get">
+	<button class="firstButton" type="submit">News</button>
+</form>
+	</div>
+	
+ <div class="login">
+	
+    <h1>Fake News📰 Detector</h1>
+
+    <form action="{{ url_for('predict')}}" method="POST">
+        <textarea name="message" rows="6" cols="50" required="required" style="font-size: 18pt">{{ message }}</textarea>
+        <br><br>
+        <button type="submit" class="PredictButton">Predict</button>
+        
+        <div class="results">
+            {% if prediction == ['FAKE'] %}
+                <h2 style="color:red;">Spam⚠️News</h2>
+            {% elif prediction == ['REAL'] %}
+                <h2 style="color:green;"><b>Real News📰</b></h2>
+            {% endif %}
+        </div>
+    </form>
+
+   
+    <!-- <form action="{{ url_for('news') }}" method="get" class="top-right-button"> -->
+		<!-- <button type="submit">News</button> -->
+	<!-- </form> -->
+
+ </div>
+</body>
+</html>
